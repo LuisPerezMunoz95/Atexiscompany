@@ -23,24 +23,33 @@ public class Flight {
     @Field
     private boolean layOver;
     @Field
-    private int passengersNumber;
+    private boolean luggage;
     @Field
     private String timeDate;
     @Field
     private String dayDate;
+    @Field
+    private String transitTime;
+    @Field
+    private int price;
+    @Field
+    private int passengersNumber;
 
     public Flight(){}
-
-    public Flight(String id, String destinationsList, String originsList, String airLines, String tripSelected, boolean layOver, int passengersNumber, String timeDate, String dayDate) {
+    public String asda="";
+    public Flight(String id, String originsList, String destinationsList, String airLines, String tripSelected, boolean layOver, boolean luggage, String timeDate, String dayDate, String transitTime, int price, int passengersNumber) {
         this.id = id;
-        this.destinationsList = destinationsList;
         this.originsList = originsList;
+        this.destinationsList = destinationsList;
         this.airLines = airLines;
         this.tripSelected = tripSelected;
         this.layOver = layOver;
-        this.passengersNumber = passengersNumber;
+        this.luggage = luggage;
         this.timeDate = timeDate;
         this.dayDate = dayDate;
+        this.transitTime = transitTime;
+        this.price = price;
+        this.passengersNumber = passengersNumber;
     }
 
     public String getId() {
@@ -51,20 +60,20 @@ public class Flight {
         this.id = id;
     }
 
-    public String getDestinationsList() {
-        return destinationsList;
-    }
-
-    public void setDestinationsList(String destinationsList) {
-        this.destinationsList = destinationsList;
-    }
-
     public String getOriginsList() {
         return originsList;
     }
 
     public void setOriginsList(String originsList) {
         this.originsList = originsList;
+    }
+
+    public String getDestinationsList() {
+        return destinationsList;
+    }
+
+    public void setDestinationsList(String destinationsList) {
+        this.destinationsList = destinationsList;
     }
 
     public String getAirLines() {
@@ -91,12 +100,12 @@ public class Flight {
         this.layOver = layOver;
     }
 
-    public int getPassengersNumber() {
-        return passengersNumber;
+    public boolean isLuggage() {
+        return luggage;
     }
 
-    public void setPassengersNumber(int passengersNumber) {
-        this.passengersNumber = passengersNumber;
+    public void setLuggage(boolean luggage) {
+        this.luggage = luggage;
     }
 
     public String getTimeDate() {
@@ -115,18 +124,45 @@ public class Flight {
         this.dayDate = dayDate;
     }
 
+    public String getTransitTime() {
+        return transitTime;
+    }
+
+    public void setTransitTime(String transitTime) {
+        this.transitTime = transitTime;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getPassengersNumber() {
+        return passengersNumber;
+    }
+
+    public void setPassengersNumber(int passengersNumber) {
+        this.passengersNumber = passengersNumber;
+    }
+
     @Override
     public String toString() {
         return "Flight{" +
                 "id='" + id + '\'' +
-                ", destinationsList='" + destinationsList + '\'' +
                 ", originsList='" + originsList + '\'' +
+                ", destinationsList='" + destinationsList + '\'' +
                 ", airLines='" + airLines + '\'' +
                 ", tripSelected='" + tripSelected + '\'' +
                 ", layOver=" + layOver +
-                ", passengersNumber=" + passengersNumber +
+                ", luggage=" + luggage +
                 ", timeDate='" + timeDate + '\'' +
                 ", dayDate='" + dayDate + '\'' +
+                ", transitTime='" + transitTime + '\'' +
+                ", price=" + price +
+                ", passengersNumber=" + passengersNumber +
                 '}';
     }
 }
