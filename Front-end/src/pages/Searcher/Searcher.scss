@@ -1,0 +1,58 @@
+.logoImg{
+    z-index: 1;
+  }
+  .searcher-label{
+    margin-right: 1vh;
+    margin-left: 1vh;
+  }
+  .Login{
+    margin-top: -2vw;
+    display: flex;
+    justify-items: center;
+    justify-content: right;
+    float: right;
+    align-content: center;
+    font-size: large;
+    border-radius: 1vh;
+    margin-right: 1vw;
+  }
+  
+  
+  .Searcher{
+    justify-content: center;
+    display: flex;
+    color: rgb(64, 89, 213);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2vw;
+    margin-top: 1vw;
+  }
+  
+  .Results{
+    justify-content: center;
+    display: flex;
+    color: rgb(64, 89, 213);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2vw;
+    margin-top: 1vw;
+  }
+  
+  .formTrip{
+    justify-content: center;
+    display: flex;
+    margin-top: 1vw;
+    font-size: 1vw;
+    color: green;
+  }
+  .date{
+    border-radius: 1vh;
+    margin-left: 1vh;
+    margin-right: 1vh;
+    
+  }
+  .submit{
+    border-radius: 1vh;
+    color: white;
+    background-color: blue;
+  }
