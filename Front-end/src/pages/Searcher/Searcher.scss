@@ -1,49 +1,27 @@
-.logoImg{
-    z-index: 1;
-  }
   .searcher-label{
     margin-right: 1vh;
     margin-left: 1vh;
   }
-  .Login{
-    margin-top: -2vw;
-    display: flex;
-    justify-items: center;
-    justify-content: right;
-    float: right;
-    align-content: center;
-    font-size: large;
-    border-radius: 1vh;
-    margin-right: 1vw;
-  }
-  
-  
   .Searcher{
-    justify-content: center;
-    display: flex;
+    margin-top: 5vh;
     color: rgb(64, 89, 213);
     text-transform: uppercase;
     font-weight: bold;
     font-size: 2vw;
-    margin-top: 1vw;
   }
   
   .Results{
-    justify-content: center;
-    display: flex;
     color: rgb(64, 89, 213);
     text-transform: uppercase;
+    margin-top: 5vh;
     font-weight: bold;
     font-size: 2vw;
-    margin-top: 1vw;
   }
   
   .formTrip{
-    justify-content: center;
-    display: flex;
     margin-top: 1vw;
     font-size: 1vw;
-    color: green;
+    color: rgb(64, 89, 213);
   }
   .date{
     border-radius: 1vh;
@@ -54,5 +32,28 @@
   .submit{
     border-radius: 1vh;
     color: white;
-    background-color: blue;
+    background-color: rgb(64, 89, 213);
   }
+  
+  .tableResults{
+    th{
+      border: 1px solid rgb(64, 89, 213);
+      color: white;
+      background-color: rgb(64, 89, 213);
+    }
+    td{
+      border: 1px solid rgb(64, 89, 213);
+      text-align: center;
+      width: 20vh;
+    }
+    table{
+      border-radius: 1vh;
+      border-style: solid;
+      border-color: rgb(64, 89, 213);
+      border-spacing: 0px;
+      margin-top: 5vh;
+      margin-left: 10vh;
+      margin-right: 10vh;
+      margin-bottom: 10vh;
+    }
+}

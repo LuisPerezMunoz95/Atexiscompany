@@ -2,23 +2,159 @@ import Origins from "../../components/Origins/Origins";
 import TypeOfTrip from "../../components/TypeOfTrip/TypeOfTrip";
 import Destinations from "../../components/Destinations/Destinations";
 import NumberOFPeople from "../../components/NumberOFPeople/NumberOFPeople";
-import appLogo from "../../assets/background-image.png";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./Searcher.scss";
 function Searcher(props) {
   const [onewayTrip, setOneWayTrip] = useState(true);
   const [originTrip, setOriginTrip] = useState("");
+  const headerTable = [
+    "Id",
+    "From",
+    "To",
+    "Date",
+    "Hour",
+    "Company",
+    "LayOver",
+    "Luggage",
+    "Duration",
+    "Price",
+  ];
+  const flights = [
+    {
+      Id: 1,
+      From: "Paris",
+      To: "Barcelona",
+      Date: "30/11/2022",
+      Hour: "14:30",
+      Company: "Iberia",
+      LayOver: "0",
+      Luggage: "Yes",
+      Duration: "3 h",
+      Price: "100€",
+    },
+    {
+      Id: 2,
+      From: "Paris",
+      To: "Barcelona",
+      Date: "30/11/2022",
+      Hour: "14:30",
+      Company: "Iberia",
+      LayOver: "0",
+      Luggage: "Yes",
+      Duration: "3 h",
+      Price: "100€",
+    },
+    {
+      Id: 3,
+      From: "Paris",
+      To: "Barcelona",
+      Date: "30/11/2022",
+      Hour: "14:30",
+      Company: "Iberia",
+      LayOver: "0",
+      Luggage: "Yes",
+      Duration: "3 h",
+      Price: "100€",
+    },
+    {
+      Id: 4,
+      From: "Paris",
+      To: "Barcelona",
+      Date: "30/11/2022",
+      Hour: "14:30",
+      Company: "Iberia",
+      LayOver: "0",
+      Luggage: "Yes",
+      Duration: "3 h",
+      Price: "100€",
+    },
+    {
+      Id: 5,
+      From: "Paris",
+      To: "Barcelona",
+      Date: "30/11/2022",
+      Hour: "14:30",
+      Company: "Iberia",
+      LayOver: "0",
+      Luggage: "Yes",
+      Duration: "3 h",
+      Price: "100€",
+    },
+    {
+      Id: 6,
+      From: "Paris",
+      To: "Barcelona",
+      Date: "30/11/2022",
+      Hour: "14:30",
+      Company: "Iberia",
+      LayOver: "0",
+      Luggage: "Yes",
+      Duration: "3 h",
+      Price: "100€",
+    },
+    {
+      Id: 7,
+      From: "Paris",
+      To: "Barcelona",
+      Date: "30/11/2022",
+      Hour: "14:30",
+      Company: "Iberia",
+      LayOver: "0",
+      Luggage: "Yes",
+      Duration: "3 h",
+      Price: "100€",
+    },
+    {
+      Id: 8,
+      From: "Paris",
+      To: "Barcelona",
+      Date: "30/11/2022",
+      Hour: "14:30",
+      Company: "Iberia",
+      LayOver: "0",
+      Luggage: "Yes",
+      Duration: "3 h",
+      Price: "100€",
+    },
+    {
+      Id: 9,
+      From: "Paris",
+      To: "Barcelona",
+      Date: "30/11/2022",
+      Hour: "14:30",
+      Company: "Iberia",
+      LayOver: "0",
+      Luggage: "Yes",
+      Duration: "3 h",
+      Price: "100€",
+    },
+    {
+      Id: 10,
+      From: "Paris",
+      To: "Barcelona",
+      Date: "30/11/2022",
+      Hour: "14:30",
+      Company: "Iberia",
+      LayOver: "0",
+      Luggage: "Yes",
+      Duration: "3 h",
+      Price: "100€",
+    },
+    {
+      Id: 11,
+      From: "Paris",
+      To: "Barcelona",
+      Date: "30/11/2022",
+      Hour: "14:30",
+      Company: "Iberia",
+      LayOver: "0",
+      Luggage: "Yes",
+      Duration: "3 h",
+      Price: "100€",
+    },
+  ];
   return (
     <div className="PrimaryContainer">
-      <div className="Login">
-        <Link to="/login">Login</Link>
-        <Link to="/signup">Sign up</Link>
-        {/* <label>User:</label>
-        <input type="text"></input>
-        <label>Password:</label>
-        <input type="password"></input> */}
-      </div>
       <div className="Searcher">Searcher:</div>
       <form className="formTrip" action="">
         <label className="searcher-label">From:</label>
@@ -47,7 +183,29 @@ function Searcher(props) {
         <input className="submit" type="submit" value="Search" />
       </form>
       <div className="Results">Results:</div>
-      <img className="logoImg" src={appLogo}></img>
+      <div className="tableResults">
+        <table>
+          <tr id="tableHeader">
+            {headerTable.map((element) => (
+              <th>{element}</th>
+            ))}
+          </tr>
+          {flights.map((element, index) => (
+            <tr>
+              <td>{element.Id}</td>
+              <td>{element.From}</td>
+              <td>{element.To}</td>
+              <td>{element.Date}</td>
+              <td>{element.Hour}</td>
+              <td>{element.Company}</td>
+              <td>{element.LayOver}</td>
+              <td>{element.Luggage}</td>
+              <td>{element.Duration}</td>
+              <td>{element.Price}</td>
+            </tr>
+          ))}
+        </table>
+      </div>
     </div>
   );
 }

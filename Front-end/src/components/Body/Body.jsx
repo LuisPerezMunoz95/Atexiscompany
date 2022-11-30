@@ -2,6 +2,7 @@ import Searcher from "../../pages/Searcher/Searcher";
 import Login from "../../pages/Login/Login";
 import Signup from "../../pages/Signup/Signup";
 import { Route, Routes } from "react-router-dom";
+import "./Body.scss";
 function Body(props) {
   return (
     <div className="MainContainerBody">
