@@ -1,7 +1,8 @@
 import "./TypeOfTrip.scss";
 function TypeOfTrip(props) {
   function handleTypeOfTrip(event) {
-    console.log(event.target.value);
+    const newQuery = { ...props.query, Type_of_trip: event.target.value };
+    props.setQuery(newQuery);
     if (event.target.value === "One-way") {
       props.setOneWayTrip(true);
     } else {

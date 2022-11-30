@@ -1,7 +1,10 @@
-import "./Destinations.scss";
 function Destinations(props) {
+  function handleDestination(event) {
+    const newQuery = { ...props.query, to: event.target.value };
+    props.setQuery(newQuery);
+  }
   return (
-    <select className="to">
+    <select className="selecter" onChange={handleDestination}>
       {props.cities.map((element, index) =>
         props.originTrip === element ? (
           props.originTrip === "" ? (
