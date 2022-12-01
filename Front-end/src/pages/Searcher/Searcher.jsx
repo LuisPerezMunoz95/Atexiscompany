@@ -2,47 +2,125 @@ import Origins from "../../components/Origins/Origins";
 import TypeOfTrip from "../../components/TypeOfTrip/TypeOfTrip";
 import Destinations from "../../components/Destinations/Destinations";
 import Selecter from "../../components/Selecter/Selecter";
+import axios from "axios";
 import { useState } from "react";
 import "./Searcher.scss";
 function Searcher(props) {
+  const flightUrl = "http://localhost:8083/api/flight";
+  const flightsPopulated = [];
+  const [flights, setFlights] = useState([]);
   const [search, setSearch] = useState(false);
   const [query, setQuery] = useState({
-    from: "",
-    to: "",
+    originsList: "",
+    destinationsList: "",
     Type_of_trip: "One-way",
-    LayOver: false,
-    Luggage: false,
-    NºPeople: 1,
-    goDay: "",
-    goHour: "",
+    layOver: false,
+    luggage: false,
+    passengersNumber: 1,
+    dayDate: "",
+    timeDate: "",
     returnDay: "",
     returnHour: "",
   });
   const [onewayTrip, setOneWayTrip] = useState(true);
   const [originTrip, setOriginTrip] = useState("");
+  const NumbersOFPeople = [1, 2];
+  // const airLines = ["Iberia", "BritishAirWays", "Ryanair"];
+  const airLines = ["Iberia"];
+  const dayDates = [
+    "2022-12-01",
+    "2022-12-02",
+    "2022-12-03",
+  ];
+  const times = [
+    "00:00",
+    "01:00",
+    "02:00",
+    "03:00",
+    "04:00",
+    "05:00",
+    "06:00",
+    "07:00",
+    "08:00",
+    "09:00",
+    "10:00",
+    "11:00",
+    "12:00",
+    "13:00",
+    "14:00",
+    "15:00",
+    "16:00",
+    "17:00",
+    "18:00",
+    "19:00",
+    "20:00",
+    "21:00",
+    "22:00",
+    "23:00",
+  ];
+  const layOvers = [true, false];
+  const luggages = [true, false];
+  // const prices = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+  const prices = [100];
+  const durations = [
+    "1 hr",
+  ];
+
+  function populate() {
+    props.cities.map((origin) => {
+      props.cities.map((destination) => {
+        NumbersOFPeople.map((people) => {
+          airLines.map((airline) => {
+            dayDates.map((dayDate) => {
+              layOvers.map((layOver) => {
+                luggages.map((luggage) => {
+                  times.map((time) => {
+                    durations.map((duration) => {
+                      prices.map((price) => {
+                        const flight = {
+                          "airLines": airline,
+                          "dayDate": dayDate,
+                          "destinationsList": destination,
+                          "layOver": layOver,
+                          "luggage": luggage,
+                          "originsList": origin,
+                          "passengersNumber": people,
+                          "price": price,
+                          "timeDate": time,
+                          "transitTime": duration,
+                          "tripSelected": "One-Way",
+                        };
+                        // flightsPopulated.push(flight)
+                        axios.post(flightUrl,flight)
+                      });
+                    });
+                  });
+                });
+              });
+            });
+          });
+        });
+      });
+    });
+  }
 
   function handleLayOver(event) {
-    const newQuery = { ...query, LayOver: !query.LayOver };
+    const newQuery = { ...query, layOver: !query.layOver };
     setQuery(newQuery);
     setSearch(false);
   }
   function handleLuggage(event) {
-    const newQuery = { ...query, Luggage: !query.Luggage };
+    const newQuery = { ...query, luggage: !query.luggage };
     setQuery(newQuery);
     setSearch(false);
   }
-  function handleQuery(event) {
-    console.log(query);
-    alert("Make conection to Database");
-    setSearch(true);
-  }
   function handleGoDay(event) {
-    const newQuery = { ...query, goDay: event.target.value };
+    const newQuery = { ...query, dayDate: event.target.value };
     setQuery(newQuery);
     setSearch(false);
   }
   function handleGoTime(event) {
-    const newQuery = { ...query, goHour: event.target.value };
+    const newQuery = { ...query, timeDate: event.target.value };
     setQuery(newQuery);
     setSearch(false);
   }
@@ -56,6 +134,25 @@ function Searcher(props) {
     setQuery(newQuery);
     setSearch(false);
   }
+  function checkResults(result) {
+    return (
+      query.layOver === result.layOver &&
+      query.luggage === result.luggage &&
+      query.dayDate === result.dayDate &&
+      query.timeDate === result.timeDate &&
+      query.originsList === result.originsList &&
+      query.destinationsList === result.destinationsList &&
+      query.passengersNumber === result.passengersNumber
+    );
+  }
+  function handleQuery(event) {
+    axios.get(flightUrl).then((response) => {
+      setFlights(response.data.filter(checkResults));
+    });
+    populate();
+    console.log(flightsPopulated.length)
+    setSearch(true);
+  }
   const headerTable = [
     "Id",
     "From",
@@ -68,141 +165,7 @@ function Searcher(props) {
     "Duration",
     "Price",
   ];
-  const NumbersOFPeople = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const flights = [
-    {
-      Id: 1,
-      From: "Paris",
-      To: "Barcelona",
-      Date: "30/11/2022",
-      Hour: "14:30",
-      Company: "Iberia",
-      LayOver: "0",
-      Luggage: "Yes",
-      Duration: "3 h",
-      Price: "100€",
-    },
-    {
-      Id: 2,
-      From: "Paris",
-      To: "Barcelona",
-      Date: "30/11/2022",
-      Hour: "14:30",
-      Company: "Iberia",
-      LayOver: "0",
-      Luggage: "Yes",
-      Duration: "3 h",
-      Price: "100€",
-    },
-    {
-      Id: 3,
-      From: "Paris",
-      To: "Barcelona",
-      Date: "30/11/2022",
-      Hour: "14:30",
-      Company: "Iberia",
-      LayOver: "0",
-      Luggage: "Yes",
-      Duration: "3 h",
-      Price: "100€",
-    },
-    {
-      Id: 4,
-      From: "Paris",
-      To: "Barcelona",
-      Date: "30/11/2022",
-      Hour: "14:30",
-      Company: "Iberia",
-      LayOver: "0",
-      Luggage: "Yes",
-      Duration: "3 h",
-      Price: "100€",
-    },
-    {
-      Id: 5,
-      From: "Paris",
-      To: "Barcelona",
-      Date: "30/11/2022",
-      Hour: "14:30",
-      Company: "Iberia",
-      LayOver: "0",
-      Luggage: "Yes",
-      Duration: "3 h",
-      Price: "100€",
-    },
-    {
-      Id: 6,
-      From: "Paris",
-      To: "Barcelona",
-      Date: "30/11/2022",
-      Hour: "14:30",
-      Company: "Iberia",
-      LayOver: "0",
-      Luggage: "Yes",
-      Duration: "3 h",
-      Price: "100€",
-    },
-    {
-      Id: 7,
-      From: "Paris",
-      To: "Barcelona",
-      Date: "30/11/2022",
-      Hour: "14:30",
-      Company: "Iberia",
-      LayOver: "0",
-      Luggage: "Yes",
-      Duration: "3 h",
-      Price: "100€",
-    },
-    {
-      Id: 8,
-      From: "Paris",
-      To: "Barcelona",
-      Date: "30/11/2022",
-      Hour: "14:30",
-      Company: "Iberia",
-      LayOver: "0",
-      Luggage: "Yes",
-      Duration: "3 h",
-      Price: "100€",
-    },
-    {
-      Id: 9,
-      From: "Paris",
-      To: "Barcelona",
-      Date: "30/11/2022",
-      Hour: "14:30",
-      Company: "Iberia",
-      LayOver: "0",
-      Luggage: "Yes",
-      Duration: "3 h",
-      Price: "100€",
-    },
-    {
-      Id: 10,
-      From: "Paris",
-      To: "Barcelona",
-      Date: "30/11/2022",
-      Hour: "14:30",
-      Company: "Iberia",
-      LayOver: "0",
-      Luggage: "Yes",
-      Duration: "3 h",
-      Price: "100€",
-    },
-    {
-      Id: 11,
-      From: "Paris",
-      To: "Barcelona",
-      Date: "30/11/2022",
-      Hour: "14:30",
-      Company: "Iberia",
-      LayOver: "0",
-      Luggage: "Yes",
-      Duration: "3 h",
-      Price: "100€",
-    },
-  ];
+
   return (
     <div className="PrimaryContainer">
       <div className="Searcher">Searcher:</div>
@@ -280,16 +243,16 @@ function Searcher(props) {
           <tbody>
             {flights.map((element, index) => (
               <tr key={index}>
-                <td>{element.Id}</td>
-                <td>{element.From}</td>
-                <td>{element.To}</td>
-                <td>{element.Date}</td>
-                <td>{element.Hour}</td>
-                <td>{element.Company}</td>
-                <td>{element.LayOver}</td>
-                <td>{element.Luggage}</td>
-                <td>{element.Duration}</td>
-                <td>{element.Price}</td>
+                <td>{element.id}</td>
+                <td>{element.originsList}</td>
+                <td>{element.destinationsList}</td>
+                <td>{element.dayDate}</td>
+                <td>{element.timeDate}</td>
+                <td>{element.airLines}</td>
+                <td>{element.layOver ? "Yes" : "No"}</td>
+                <td>{element.luggage ? "Yes" : "No"}</td>
+                <td>{element.transitTime}</td>
+                <td>{element.price}€</td>
               </tr>
             ))}
           </tbody>

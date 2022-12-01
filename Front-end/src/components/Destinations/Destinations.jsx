@@ -1,6 +1,6 @@
 function Destinations(props) {
   function handleDestination(event) {
-    const newQuery = { ...props.query, to: event.target.value };
+    const newQuery = { ...props.query, destinationsList: event.target.value };
     props.setQuery(newQuery);
   }
   return (

@@ -3,7 +3,7 @@ import "./Selecter.scss";
 
 function Selecter(props) {
   function handleChange(event) {
-    const newQuery = { ...props.query, NºPeople: event.target.value };
+    const newQuery = { ...props.query, passengersNumber: event.target.value };
     props.setQuery(newQuery);
   }
   return (

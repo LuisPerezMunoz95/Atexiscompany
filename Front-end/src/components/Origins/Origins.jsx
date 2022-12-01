@@ -1,6 +1,6 @@
 function Origins(props) {
   function handleOrigin(event) {
-    const newQuery = { ...props.query, from: event.target.value };
+    const newQuery = { ...props.query, originsList: event.target.value };
     props.setQuery(newQuery);
     props.setOriginTrip(event.target.value);
   }
